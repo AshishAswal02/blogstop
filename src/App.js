@@ -1,23 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import Navbar from "./Navbar";
+import Home from "./Home";
+import { ErrorBoundary } from "react-error-boundary";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <ErrorBoundary FallbackComponent={ErrorHandler}>
+
+
+
+      <div className="app">
+        <Navbar />
+        <div className="content">
+        <Home/>
+        </div>
+      </div>
+
+
+       
+    </ErrorBoundary>
+  );
+}
+
+function ErrorHandler({ error }) {
+
+  // console.dir(error);
+  return (
+    <div role="alert">
+      <p>An error occurred:</p>
+      <pre>{error.message}</pre>
     </div>
   );
 }
